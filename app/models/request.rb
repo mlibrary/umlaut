@@ -469,12 +469,9 @@ class Request < ActiveRecord::Base
         k = k.dup.force_encoding("ISO-8859-1")
         v.force_encoding("ISO-8859-1")
         v.scrub!
-        req.http_env[k] = v.slice(0, 800) # only first 800 chars sorry
+        req.http_env[k] = v
       end
     end
-    #["HTTP_X_FORWARDED_FOR", "SERVER_NAME", "HTTP_USER_AGENT", "HTTP_ACCEPT", 'HTTP_ACCEPT_LANGUAGE', 'HTTP_ACCEPT_CHARSET', 'HTTP_ACCEPT_ENCODING']
-
-
     
     req.save!
     return req
